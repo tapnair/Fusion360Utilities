@@ -110,3 +110,12 @@ def extrude_all_profiles(sketch, distance, component):
     distance_input = adsk.core.ValueInput.createByReal(distance)
     ext_input.setDistanceExtent(False, distance_input)
     extrudes.add(ext_input)
+
+
+# Creates a new component in the target component
+def create_component(target_component, name):
+    transform = adsk.core.Matrix3D.create()
+    new_occurrence = target_component.occurrences.addNewComponent(transform)
+    new_occurrence.component.name = name
+
+    return new_occurrence
