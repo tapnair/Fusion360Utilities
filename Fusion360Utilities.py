@@ -97,7 +97,7 @@ def sketch_by_name(sketches, name):
 
 
 # Create extrude features of all profiles in a sketch into the given component by a distance
-def extrude_all_profiles(sketch, distance, component):
+def extrude_all_profiles(sketch, distance, component, operation):
 
     # Create Collection for all Profiles
     profile_collection = adsk.core.ObjectCollection.create()
@@ -106,7 +106,7 @@ def extrude_all_profiles(sketch, distance, component):
 
     # Create an extrusion
     extrudes = component.features.extrudeFeatures
-    ext_input = extrudes.createInput(profile_collection, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
+    ext_input = extrudes.createInput(profile_collection, operation)
     distance_input = adsk.core.ValueInput.createByReal(distance)
     ext_input.setDistanceExtent(False, distance_input)
     extrudes.add(ext_input)
