@@ -160,8 +160,6 @@ class Fusion360CommandBase:
 
         self.command_in_nav_bar = cmd_def.get('command_in_nav_bar', False)
 
-        self.is_promoted = cmd_def.get('is_promoted', False)
-
         self.debug = debug
 
         # global set of event handlers to keep them referenced for the duration of the command
@@ -202,8 +200,6 @@ class Fusion360CommandBase:
                 if not drop_control:
                     drop_control = controls_to_add_to.addDropDown(self.drop_down_name, self.drop_down_resources,
                                                                   self.drop_down_cmd_id)
-                    if self.is_promoted:
-                        drop_control.isPromoted = True
 
                 controls_to_add_to = drop_control.controls
 
@@ -224,8 +220,6 @@ class Fusion360CommandBase:
 
                 new_control = controls_to_add_to.addCommand(cmd_definition)
                 new_control.isVisible = True
-
-                # todo isPromoted for single commands
 
         except RuntimeError:
             if ui:
